@@ -4,16 +4,19 @@ import axios from "axios";
 
 const Student = (props) => (
   <tr>
+    {/* <td>{props.student._id}</td> */}
     <td>{props.student.name}</td>
     <td>{props.student.age}</td>
-
-    <td>-{props.student.subjects}- </td>
-
+    <td>
+      <Link type="link" to={"/students/view/" + props.student._id}>
+        {props.student.subjects.length}
+      </Link>
+    </td>
     <td>
       <Link
         className="btn btn-light"
         type="button"
-        to={"/addsubjecttostudent/" + props.student._id}
+        to={"/addSubjectName/" + props.student._id}
       >
         Enroll
       </Link>{" "}
@@ -49,7 +52,9 @@ export default class StudentList extends Component {
   }
   componentDidMount() {
     axios
-      .get("http://localhost:5000/allstudents")
+      .get(
+        "https://pi1q1uq4s6.execute-api.eu-south-1.amazonaws.com/dev/allstudents"
+      )
       .then((response) => {
         this.setState({ students: response.data });
         console.log(response.data);
@@ -60,7 +65,10 @@ export default class StudentList extends Component {
   }
   deleteStudent(id) {
     axios
-      .delete("http://localhost:5000/students", { data: { _id: id } })
+      .delete(
+        "https://pi1q1uq4s6.execute-api.eu-south-1.amazonaws.com/dev/students",
+        { data: { _id: id } }
+      )
       .then((response) => {
         console.log(response.data);
       });
@@ -89,6 +97,7 @@ export default class StudentList extends Component {
         <table className="table">
           <thead className="thead-light">
             <tr>
+              {/* <th>Id</th> */}
               <th>Name</th>
               <th>Age</th>
               <th>Subjects</th>

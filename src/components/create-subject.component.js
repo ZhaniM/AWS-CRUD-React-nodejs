@@ -38,13 +38,18 @@ export default class CreateSubject extends Component {
     };
     console.log(subject);
     axios
-      .post("http://localhost:5000/subjects/create", subject)
-      .then((res) => console.log(res.data));
+      .post(
+        "https://pi1q1uq4s6.execute-api.eu-south-1.amazonaws.com/dev/subjects/create",
+        subject
+      )
+      .then((res) => console.log(res.data))
+      .catch((err) => {
+        console.log(err);
+      });
 
     this.setState({
       name: "",
     });
-    window.location = "/allsubjects";
   }
 
   render() {

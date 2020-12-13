@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
+
 export default class CreateStudent extends Component {
   constructor(props) {
     super(props);
+
     this.onChangeName = this.onChangeName.bind(this);
     this.onChangeAge = this.onChangeAge.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -32,10 +35,13 @@ export default class CreateStudent extends Component {
       age: this.state.age,
     };
     axios
-      .post("http://localhost:5000/students/create", student)
+      .post(
+        "https://pi1q1uq4s6.execute-api.eu-south-1.amazonaws.com/dev/students/create",
+        student
+      )
       .then((res) => console.log(res.data));
+
     console.log(student);
-    window.location = "/allstudents";
   }
 
   render() {

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect, Component } from "react";
 import axios from "axios";
 
 export default class EditStudent extends Component {
@@ -36,12 +36,11 @@ export default class EditStudent extends Component {
     console.log(this.props.match.params.id);
     axios
       .put(
-        "http://localhost:5000/students/update/" + this.props.match.params.id,
+        "https://pi1q1uq4s6.execute-api.eu-south-1.amazonaws.com/dev/students/update/" +
+          this.props.match.params.id,
         student
       )
       .then((res) => console.log(res.data));
-
-    window.location = "/allstudents";
   }
 
   render() {

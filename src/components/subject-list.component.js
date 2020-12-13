@@ -3,9 +3,13 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 const Subject = (props) => (
   <tr>
+    <td>{props.subject._id}</td>
     <td>{props.subject.name}</td>
-    <td>{props.subject.students} </td>
-
+    <td>
+      <Link type="link" to={"/subjects/view/" + props.subject._id}>
+        {props.subject.students.length}
+      </Link>
+    </td>
     <td>
       {" "}
       <Link
@@ -39,7 +43,9 @@ export default class SubjectList extends Component {
   }
   componentDidMount() {
     axios
-      .get("http://localhost:5000/allsubjects")
+      .get(
+        "https://pi1q1uq4s6.execute-api.eu-south-1.amazonaws.com/dev/allsubjects"
+      )
       .then((response) => {
         this.setState({ subjects: response.data });
         console.log(response.data);
@@ -50,7 +56,10 @@ export default class SubjectList extends Component {
   }
   deleteSubject(id) {
     axios
-      .delete("http://localhost:5000/subjects", { data: { _id: id } })
+      .delete(
+        "https://pi1q1uq4s6.execute-api.eu-south-1.amazonaws.com/dev/subjects",
+        { data: { _id: id } }
+      )
       .then((response) => {
         console.log(response.data);
       });
@@ -78,8 +87,9 @@ export default class SubjectList extends Component {
         <table className="table">
           <thead className="thead-light">
             <tr>
+              <th>Id</th>
               <th>Name</th>
-              <th>Students IDs</th>
+              <th>Students</th>
               <th>Action</th>
             </tr>
           </thead>

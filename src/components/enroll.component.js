@@ -29,13 +29,11 @@ export default class Enroll extends Component {
     console.log(Id);
     axios
       .put(
-        "http://localhost:5000/addsubjecttostudent/" +
+        "https://pi1q1uq4s6.execute-api.eu-south-1.amazonaws.com/dev/addSubjectName/" +
           this.props.match.params.id,
         Id
       )
       .then((res) => console.log(res.data));
-
-    window.location = "/allstudents";
   }
 
   render() {
@@ -44,7 +42,7 @@ export default class Enroll extends Component {
         <h3>Enroll in a Subject</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
-            <label>ID:</label>
+            <label>Subject name:</label>
             <input
               type="text"
               required

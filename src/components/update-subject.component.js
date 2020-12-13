@@ -28,12 +28,11 @@ export default class EditSubject extends Component {
     console.log(this.props.match.params.id);
     axios
       .put(
-        "http://localhost:5000/subjects/update/" + this.props.match.params.id,
+        "https://pi1q1uq4s6.execute-api.eu-south-1.amazonaws.com/dev/subjects/update/" +
+          this.props.match.params.id,
         subject
       )
       .then((res) => console.log(res.data));
-
-    window.location = "/allsubjects";
   }
 
   render() {
