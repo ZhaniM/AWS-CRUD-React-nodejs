@@ -15,3 +15,8 @@ p {
   text-align: left;
   padding-left: 3rem;
 }
+:root {
+  --amplify-primary-color: #343a40;
+  --amplify-primary-tint: #343a40;
+  --amplify-primary-shade: #343a40;
+}

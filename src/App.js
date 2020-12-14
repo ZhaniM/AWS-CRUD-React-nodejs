@@ -12,7 +12,10 @@ import AboutPage from "./components/about-page.component";
 import Enroll from "./components/enroll.component";
 import ViewStudent from "./components/view-student.component";
 import ViewSubject from "./components/view-subject.component";
-
+import Amplify from "aws-amplify";
+import awsconfig from "./aws-exports";
+import { withAuthenticator } from "@aws-amplify/ui-react";
+Amplify.configure(awsconfig);
 function App() {
   return (
     <Router>
@@ -34,4 +37,11 @@ function App() {
   );
 }
 
-export default App;
+export default withAuthenticator(App, {
+  signUpConfig: {
+    hiddenDefaults: ["phone_number"],
+    signUpFields: [
+      { label: "Name", key: "name", required: true, type: "string" },
+    ],
+  },
+});

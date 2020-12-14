@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { AmplifySignOut } from "@aws-amplify/ui-react";
 
 export default class Navbar extends Component {
   render() {
@@ -36,6 +37,9 @@ export default class Navbar extends Component {
               </Link>
             </li>
           </ul>
+          <a className="navbar-item">
+            <AmplifySignOut />
+          </a>
         </div>
       </nav>
     );
