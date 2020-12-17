@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import axios from "../axios";
 
 const Student = (props) => (
   <tr>
@@ -52,9 +52,8 @@ export default class StudentList extends Component {
   }
   componentDidMount() {
     axios
-      .get(
-        "https://pi1q1uq4s6.execute-api.eu-south-1.amazonaws.com/dev/allstudents"
-      )
+      .get("/allstudents")
+
       .then((response) => {
         this.setState({ students: response.data });
         console.log(response.data);
@@ -65,12 +64,12 @@ export default class StudentList extends Component {
   }
   deleteStudent(id) {
     axios
-      .delete(
-        "https://pi1q1uq4s6.execute-api.eu-south-1.amazonaws.com/dev/students",
-        { data: { _id: id } }
-      )
+      .delete("/students", { data: { _id: id } })
       .then((response) => {
         console.log(response.data);
+      })
+      .catch((err) => {
+        console.log({ err: err.message });
       });
 
     this.setState({

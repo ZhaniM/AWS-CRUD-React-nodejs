@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
+import axios from "../axios";
 
 export default class Enroll extends Component {
   constructor(props) {
@@ -28,11 +28,7 @@ export default class Enroll extends Component {
     console.log(this.props.match.params.id);
     console.log(Id);
     axios
-      .put(
-        "https://pi1q1uq4s6.execute-api.eu-south-1.amazonaws.com/dev/addSubjectName/" +
-          this.props.match.params.id,
-        Id
-      )
+      .put("/addSubjectName/" + this.props.match.params.id, Id)
       .then((res) => console.log(res.data));
   }
 

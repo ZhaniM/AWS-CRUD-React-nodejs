@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import axios from "axios";
+import axios from "../axios";
 import { render } from "@testing-library/react";
 
 const User = () => {
@@ -14,9 +14,7 @@ const User = () => {
     loadUser();
   }, []);
   const loadUser = async () => {
-    const res = await axios.get(
-      `https://pi1q1uq4s6.execute-api.eu-south-1.amazonaws.com/dev/students/view/${id}`
-    );
+    const res = await axios.get(`/students/view/${id}`);
     console.log(res.data);
     setUser(res.data);
   };

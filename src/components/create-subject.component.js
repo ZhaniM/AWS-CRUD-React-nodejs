@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
+import axios from "../axios";
 
 export default class CreateSubject extends Component {
   constructor(props) {
@@ -13,12 +13,6 @@ export default class CreateSubject extends Component {
       students: [],
     };
   }
-  //   componentDidMount() {
-  //     this.setState({
-  //       subjects: ["test subject"],
-  //       name: "test subject",
-  //     });
-  //   }
 
   onChangeName(e) {
     this.setState({
@@ -26,11 +20,6 @@ export default class CreateSubject extends Component {
     });
   }
 
-  //   onChangeName(e) {
-  //     this.setState({
-  //       name: e.target.value,
-  //     });
-  //   }
   onSubmit(e) {
     e.preventDefault();
     const subject = {
@@ -38,10 +27,7 @@ export default class CreateSubject extends Component {
     };
     console.log(subject);
     axios
-      .post(
-        "https://pi1q1uq4s6.execute-api.eu-south-1.amazonaws.com/dev/subjects/create",
-        subject
-      )
+      .post("/subjects/create", subject)
       .then((res) => console.log(res.data))
       .catch((err) => {
         console.log(err);

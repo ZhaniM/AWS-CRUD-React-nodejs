@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
+import axios from "../axios";
 
 export default class EditSubject extends Component {
   constructor(props) {
@@ -27,11 +27,7 @@ export default class EditSubject extends Component {
     };
     console.log(this.props.match.params.id);
     axios
-      .put(
-        "https://pi1q1uq4s6.execute-api.eu-south-1.amazonaws.com/dev/subjects/update/" +
-          this.props.match.params.id,
-        subject
-      )
+      .put("/subjects/update/" + this.props.match.params.id, subject)
       .then((res) => console.log(res.data));
   }
 

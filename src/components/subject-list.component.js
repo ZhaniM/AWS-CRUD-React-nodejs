@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import axios from "../axios";
 const Subject = (props) => (
   <tr>
     <td>{props.subject._id}</td>
@@ -43,9 +43,7 @@ export default class SubjectList extends Component {
   }
   componentDidMount() {
     axios
-      .get(
-        "https://pi1q1uq4s6.execute-api.eu-south-1.amazonaws.com/dev/allsubjects"
-      )
+      .get("/allsubjects")
       .then((response) => {
         this.setState({ subjects: response.data });
         console.log(response.data);
@@ -56,12 +54,12 @@ export default class SubjectList extends Component {
   }
   deleteSubject(id) {
     axios
-      .delete(
-        "https://pi1q1uq4s6.execute-api.eu-south-1.amazonaws.com/dev/subjects",
-        { data: { _id: id } }
-      )
+      .delete("/subjects", { data: { _id: id } })
       .then((response) => {
         console.log(response.data);
+      })
+      .catch((err) => {
+        console.log({ err: err.message });
       });
 
     this.setState({

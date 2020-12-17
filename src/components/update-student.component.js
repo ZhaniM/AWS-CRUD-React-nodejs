@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Component } from "react";
-import axios from "axios";
+import axios from "../axios";
 
 export default class EditStudent extends Component {
   constructor(props) {
@@ -35,11 +35,7 @@ export default class EditStudent extends Component {
     };
     console.log(this.props.match.params.id);
     axios
-      .put(
-        "https://pi1q1uq4s6.execute-api.eu-south-1.amazonaws.com/dev/students/update/" +
-          this.props.match.params.id,
-        student
-      )
+      .put("/students/update/" + this.props.match.params.id, student)
       .then((res) => console.log(res.data));
   }
 

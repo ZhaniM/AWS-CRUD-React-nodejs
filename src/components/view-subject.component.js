@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import axios from "axios";
-import { render } from "@testing-library/react";
+import axios from "../axios";
 
 const Subject = () => {
   const [subject, setSubject] = useState({
@@ -13,9 +12,7 @@ const Subject = () => {
     loadSubject();
   }, []);
   const loadSubject = async () => {
-    const res = await axios.get(
-      `https://pi1q1uq4s6.execute-api.eu-south-1.amazonaws.com/dev/subjects/view/${id}`
-    );
+    const res = await axios.get(`/subjects/view/${id}`);
     console.log(res.data);
     setSubject(res.data);
   };

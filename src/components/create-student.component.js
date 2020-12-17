@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
+import axios from "../axios";
 import { useHistory } from "react-router-dom";
 
 export default class CreateStudent extends Component {
@@ -35,10 +35,7 @@ export default class CreateStudent extends Component {
       age: this.state.age,
     };
     axios
-      .post(
-        "https://pi1q1uq4s6.execute-api.eu-south-1.amazonaws.com/dev/students/create",
-        student
-      )
+      .post("/students/create", student)
       .then((res) => console.log(res.data));
 
     console.log(student);
